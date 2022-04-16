@@ -1,0 +1,25 @@
+
+.middle{
+    height: 80%;
+    width: 100%;
+    position: relative;
+    background: url("C:\Users\umada\blog-application\src\cover_example.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.8;
+    text-align: end;
+    vertical-align: bottom;
+    position: absolute;
+    top:15%
+  }
+  
+  .deco{
+    padding-right: 8%;
+    color: white;
+    text-decoration: none;
+  }
+  
+  
+  .deco#big{
+    font-size: 5pc;
+  }

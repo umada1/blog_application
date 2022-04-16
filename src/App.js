@@ -9,15 +9,18 @@ import {
 
 export default function App() {
   return (
-    <div className="App">
-      <h2><Link to="/">Home</Link></h2>
-      <h2><Link to="/register">Register</Link></h2>
-      <h3><Link to="/login">Login</Link></h3>
+    <div className='App'>
+    <div className='dashBoard'>
+      <h3><Link className="upLinks" to="/">Home</Link></h3>
+      <h3><Link className="upLinks" to="/register">Register</Link></h3>
+      <h3><Link className="upLinks" to="/login">Login</Link></h3>
       {/*
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
         */}
+    </div>
+
     </div>
   );
 }

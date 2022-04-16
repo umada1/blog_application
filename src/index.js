@@ -10,17 +10,19 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import Middle from './Middle';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route exact path = "/" element={<App />}></Route>
+        <Route exact path = "/" element={<Middle />}></Route>
         <Route path = "/register" element={<Register />}></Route>
         <Route path = "/login" element={<Login />}></Route>
       </Routes>
     </Router>
   </React.StrictMode>
 );
+
 reportWebVitals();
