@@ -1,9 +1,6 @@
 //import logo from './logo.svg';
-import Register from './Register';
-import Login from './Login';
 import './App.css';
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
   Link
@@ -13,34 +10,14 @@ import {
 export default function App() {
   return (
     <div className="App">
-
+      <h2><Link to="/">Home</Link></h2>
+      <h2><Link to="/register">Register</Link></h2>
+      <h3><Link to="/login">Login</Link></h3>
       {/*
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      */}
-      <Router>
-        <div className="Dashboard">
-          <h2><Link to="/">Home</Link></h2>
-          <h2><Link to="/register">Register</Link></h2>
-          <h3><Link to="/login">Login</Link></h3>
-          <Routes>
-            <Route exact path = "/">
-              <App></App>
-            </Route>
-            <Route path = "/register">
-              <Register></Register>
-            </Route>
-            <Route path = "/login">
-              <Login></Login>
-            </Route>
-          </Routes>
-        </div>
-      </Router>
-
-
-
-
+        */}
     </div>
   );
 }
