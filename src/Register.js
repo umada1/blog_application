@@ -11,9 +11,23 @@ export default function Register() {
       <div className="defaultForm">
           <App />
           <div className="fillableForm">
+            <h2>Register</h2>
             <form>
+              <div className="credentials">
+                <label for="email">
+                  email address
+                </label>
+                <input required type="email" placeholder="example@emailprovider.com" name="email">
+                </input>
+                <label for="password">
+                  password
+                </label>
+                <input required type="password" name="password"></input>
 
-              
+              </div>
+              <div className="confirmation">
+                <button type="submit">Sign me up</button>
+              </div>
             </form>
           </div>
       </div>

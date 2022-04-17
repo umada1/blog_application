@@ -8,18 +8,18 @@ export default function Login() {
       <div className="defaultForm">
           <App />
           <div className="fillableForm">
+            <h2>Log in to continue</h2>
             <form>
               <div className="credentials">
-                <label>
+                <label for="email">
                   email address
-                  <input required type="email" placeholder="example@emailprovider.com" name="email">
-                  </input>
                 </label>
-                <label>
+                <input required type="email" placeholder="example@emailprovider.com" name="email">
+                </input>
+                <label for="password">
                   password
-                  <input required type="password" name="password">
-                  </input>
                 </label>
+                <input required type="password" name="password"></input>
 
               </div>
               <div className="confirmation">

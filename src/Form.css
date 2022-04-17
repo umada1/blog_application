@@ -1,0 +1,54 @@
+.fillableForm{
+    display:grid;
+    position:absolute;
+    top: 25%;
+    height: 60%;
+    width: 25%;
+    align-content: center;
+    margin:auto;
+    left: 35%;
+    font-family: 'Trebuchet MS', sans-serif;;
+    background: url("C:\Users\umada\blog-application\src\cover_example.jpg");
+    border-radius: 10%;
+    opacity: 0.8;
+    text-align: center;
+    color: white;
+}
+
+.credentials{
+    display: flexbox;
+    align-content: center;
+    text-align: center;
+}
+
+label{
+    color: white;
+}
+
+input{
+    width: 80%;
+    height: 25px;
+    border: 0;
+    background: lightgrey;
+    margin:3%
+}
+
+input::placeholder{
+    margin-left: 10px;
+}
+.confirmation{
+    display: flexbox;
+    align-content: center;
+    text-align: center;
+}
+button{
+    width: 60%;
+    height: 30px;
+    border: 0;
+    background: rgb(255, 255, 255);
+    margin-top: 20px;
+}
+button:hover{
+    background: lightyellow
+}
+
