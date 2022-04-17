@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 
 
 export default function Login() {
+
   const [credentials, setCredentials] = useState({
     email: "",
     password: ""
@@ -27,6 +28,15 @@ export default function Login() {
     }));
   }
 
+  const sendCredentials = (e) => {
+    e.preventDefault();
+    // on submit, if credentials fit, issue a token and transfer to the access page
+    // /authorised
+    // terminate when session is ended, or logout is clicked
+    // make sure hashing is performed here
+
+  }
+
 
     return (
         <div className="defaultForm">
@@ -34,7 +44,7 @@ export default function Login() {
             <div className='middle'>
             <div className="fillableForm">
             <h2>Log in to continue</h2>
-            <form>
+            <form onSubmit={sendCredentials}>
               <div className="credentials">
                 <label for="email">
                   email address
@@ -45,7 +55,6 @@ export default function Login() {
                   password
                 </label>
                 <input onChange={statePassword} required type="password" name="password" placeholder="*********" value={credentials.password}></input>
-                <p>{credentials.password}</p>
               </div>
               <div className="confirmation">
                 <button type="submit">Sign me in</button>

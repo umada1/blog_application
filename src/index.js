@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Register from './Register';
 import Login from './Login';
+import Authorised from './Authorised';
 import {
   BrowserRouter as Router,
   Routes,
@@ -20,6 +21,7 @@ root.render(
         <Route exact path = "/" element={<Middle />}></Route>
         <Route path = "/register" element={<Register />}></Route>
         <Route path = "/login" element={<Login />}></Route>
+        <Route path = "/authorised" element={<Authorised />}></Route>
       </Routes>
     </Router>
   </React.StrictMode>
