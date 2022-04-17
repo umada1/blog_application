@@ -1,13 +1,15 @@
 import App from "./App";
 import './Form.css';
+import './Middle.css';
 import React, { useState } from 'react';
 
 
 export default function Login() {
-    return (
-      <div className="defaultForm">
-          <App />
-          <div className="fillableForm">
+      return (
+        <div className="defaultForm">
+            <App />
+            <div className='middle'>
+            <div className="fillableForm">
             <h2>Log in to continue</h2>
             <form>
               <div className="credentials">
@@ -19,14 +21,15 @@ export default function Login() {
                 <label for="password">
                   password
                 </label>
-                <input required type="password" name="password"></input>
+                <input required type="password" name="password" placeholder="*********"></input>
 
               </div>
               <div className="confirmation">
-                <button type="submit">Log in</button>
+                <button type="submit">Sign me in</button>
               </div>
             </form>
+            </div>
           </div>
-      </div>
-    );
+        </div>
+      );
   }

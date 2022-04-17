@@ -9,8 +9,9 @@ import React, { useState } from 'react';
 export default function Register() {
     return (
       <div className="defaultForm">
-          <App />
-          <div className="fillableForm">
+            <App />
+            <div className='middle'>
+            <div className="fillableForm">
             <h2>Register</h2>
             <form>
               <div className="credentials">
@@ -22,14 +23,15 @@ export default function Register() {
                 <label for="password">
                   password
                 </label>
-                <input required type="password" name="password"></input>
+                <input required type="password" name="password"  placeholder="*********"></input>
 
               </div>
               <div className="confirmation">
                 <button type="submit">Sign me up</button>
               </div>
             </form>
+            </div>
           </div>
-      </div>
+        </div>
     );
   }

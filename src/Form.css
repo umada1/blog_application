@@ -2,27 +2,28 @@
     display:grid;
     position:absolute;
     top: 25%;
-    height: 60%;
-    width: 25%;
+    height: 70%;
+    width: 27%;
     align-content: center;
     margin:auto;
     left: 35%;
     font-family: 'Trebuchet MS', sans-serif;;
-    background: url("C:\Users\umada\blog-application\src\cover_example.jpg");
+    background: white;
     border-radius: 10%;
-    opacity: 0.8;
+    opacity: 0.9;
     text-align: center;
-    color: white;
+    color: black;
 }
 
 .credentials{
     display: flexbox;
     align-content: center;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 label{
-    color: white;
+    color: black;
 }
 
 input{
@@ -45,7 +46,7 @@ button{
     width: 60%;
     height: 30px;
     border: 0;
-    background: rgb(255, 255, 255);
+    background: rgba(61, 54, 54, 0.61);
     margin-top: 20px;
 }
 button:hover{
