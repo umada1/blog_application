@@ -1,12 +1,12 @@
 .fillableForm{
     display:grid;
     position:absolute;
-    top: 25%;
+    top: 18%;
     height: 70%;
     width: 27%;
     align-content: center;
     margin:auto;
-    left: 35%;
+    left: 37%;
     font-family: 'Trebuchet MS', sans-serif;;
     background: white;
     border-radius: 10%;

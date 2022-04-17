@@ -4,8 +4,31 @@ import './Middle.css';
 import React, { useState } from 'react';
 
 
+
 export default function Login() {
-      return (
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: ""
+  })
+
+  const stateEmail = (e) => {
+    e.preventDefault();
+    setCredentials((credentials ) => ({
+      ...credentials,
+      email: e.target.value
+    }));
+  }
+  
+  const statePassword = (e) => {
+    e.preventDefault();
+    setCredentials((credentials) => ({
+      ...credentials,
+      password: e.target.value
+    }));
+  }
+
+
+    return (
         <div className="defaultForm">
             <App />
             <div className='middle'>
@@ -16,13 +39,13 @@ export default function Login() {
                 <label for="email">
                   email address
                 </label>
-                <input required type="email" placeholder="example@emailprovider.com" name="email">
+                <input onChange={stateEmail} required type="email" placeholder="example@emailprovider.com" name="email" value={credentials.email}>
                 </input>
                 <label for="password">
                   password
                 </label>
-                <input required type="password" name="password" placeholder="*********"></input>
-
+                <input onChange={statePassword} required type="password" name="password" placeholder="*********" value={credentials.password}></input>
+                <p>{credentials.password}</p>
               </div>
               <div className="confirmation">
                 <button type="submit">Sign me in</button>
@@ -31,5 +54,5 @@ export default function Login() {
             </div>
           </div>
         </div>
-      );
+    );
   }
