@@ -2,21 +2,21 @@ import App from "./App";
 import './Form.css';
 import './Middle.css';
 import React, { useState } from 'react';
-
+import { useNavigate } from "react-router-dom";
 
 
 export default function Login() {
 
   const [credentials, setCredentials] = useState({
-    email: "",
+    username: "",
     password: ""
   })
 
-  const stateEmail = (e) => {
+  const stateUsername = (e) => {
     e.preventDefault();
     setCredentials((credentials ) => ({
       ...credentials,
-      email: e.target.value
+      username: e.target.value
     }));
   }
   
@@ -28,14 +28,22 @@ export default function Login() {
     }));
   }
 
+  let authorise = useNavigate();
+
   const sendCredentials = (e) => {
     e.preventDefault();
+
     // on submit, if credentials fit, issue a token and transfer to the access page
+    // function to evaluate credentials, issue token and redirect if evaluated
+    // to redirect:
+    authorise("/authorised");
     // /authorised
     // terminate when session is ended, or logout is clicked
     // make sure hashing is performed here
 
   }
+
+
 
 
     return (
@@ -49,7 +57,7 @@ export default function Login() {
                 <label for="email">
                   email address
                 </label>
-                <input onChange={stateEmail} required type="email" placeholder="example@emailprovider.com" name="email" value={credentials.email}>
+                <input onChange={stateUsername} required type="email" placeholder="example@emailprovider.com" name="email" value={credentials.username}>
                 </input>
                 <label for="password">
                   password

@@ -6,8 +6,8 @@ import {
 } from "react-router-dom";
 // purpose: a form - sends user creation request to API
 // when submitted, either responds with a message, or a warning
-
 export default function Middle() {
+
     return (
       <div className="defaultForm">
           <App />

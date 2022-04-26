@@ -5,7 +5,7 @@ export default function Authorised() {
     return (
       <div className="App">
         <AuthApp />
-        <p> blog posts to show gere</p>
+        <p> blog posts to show here</p>
       </div>
     );
   }
