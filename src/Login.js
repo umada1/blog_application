@@ -3,8 +3,9 @@ import './Form.css';
 import './Middle.css';
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
-
+const callToAPI = 'http://localhost:8080/api/';
 export default function Login() {
 
   const [credentials, setCredentials] = useState({
@@ -13,6 +14,7 @@ export default function Login() {
   })
 
   const stateUsername = (e) => {
+
     e.preventDefault();
     setCredentials((credentials ) => ({
       ...credentials,
@@ -30,21 +32,26 @@ export default function Login() {
 
   let authorise = useNavigate();
 
-  const sendCredentials = (e) => {
-    e.preventDefault();
-
-    // on submit, if credentials fit, issue a token and transfer to the access page
-    // function to evaluate credentials, issue token and redirect if evaluated
-    // to redirect:
-    authorise("/authorised");
-    // /authorised
-    // terminate when session is ended, or logout is clicked
-    // make sure hashing is performed here
-
+  const redirectToAuthorised = (e) => {
+    authorise("/authorised"); // redirects successfully
   }
 
+  const filledCred = {
+    id: 0,
+    username: credentials.username,
+    password: credentials.password
+  };
 
-
+  const sendCredentials = (e) => {
+    e.preventDefault();
+    axios.post(callToAPI+"auth", filledCred)
+      .then(res => {
+        const token = res.data.token;
+        localStorage.setItem('token', token);
+        redirectToAuthorised(localStorage.getItem('token'));
+        })
+      .catch(error => console.log(error));
+  }
 
     return (
         <div className="defaultForm">

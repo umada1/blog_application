@@ -35,7 +35,7 @@ export default function Register() {
 
   const redirectToLoginPage = (e) => {
     console.log(e);
-    loginpage("/login");
+    loginpage("/login"); // redirects successfully
   }
 
   const filledCred = {
@@ -76,7 +76,6 @@ export default function Register() {
                   password
                 </label>
                 <input onChange={statePassword} required type="password" name="password" placeholder="*********" value={credentials.password}></input>
-
               </div>
               <div className="confirmation">
                 <button type="submit">Sign me up</button>
