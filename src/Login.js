@@ -4,6 +4,7 @@ import './Middle.css';
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import Alert from 'react-bootstrap/Alert'
 
 const callToAPI = 'http://localhost:8080/api/';
 export default function Login() {
@@ -11,7 +12,8 @@ export default function Login() {
   const [credentials, setCredentials] = useState({
     username: "",
     password: ""
-  })
+  });
+  const [showAlert, setShowAlert] = useState(false);
 
   const stateUsername = (e) => {
 
@@ -50,14 +52,23 @@ export default function Login() {
         localStorage.setItem('token', token);
         redirectToAuthorised(localStorage.getItem('token'));
         })
-      .catch(error => console.log(error));
+        .catch(function (err) {
+          console.log(err);
+          setShowAlert(true);
+      })
   }
 
     return (
         <div className="defaultForm">
+          
             <App />
             <div className='middle'>
             <div className="fillableForm">
+            {showAlert?
+            <Alert className="alert" id="regLog">
+            <Alert.Heading>Credentials are incorrect! try again <button className="smallButton" onClick={() => setShowAlert(false)}>x</button></Alert.Heading>
+            </Alert>
+          : null}
             <h2>Log in to continue</h2>
             <form onSubmit={sendCredentials}>
               <div className="credentials">

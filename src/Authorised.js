@@ -1,8 +1,9 @@
 import AuthApp from "./AuthApp";
 import './App.css';
-
+import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import { useState, useEffect } from "react";
+import Alert from 'react-bootstrap/Alert'
 
 const callToAPI = 'http://localhost:8080/api/';
 
@@ -10,31 +11,25 @@ export default function Authorised() {
 
   const [entry, setEntry] = useState("");
   const [resources, setResources] = useState([]);
-  const [id, setId] = useState(0);
+  const [users, setUsers] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
+  const [showUsers,setShowUsers] = useState(false);
 
+  var token = localStorage.getItem('token');
+  var timeNow = new Date();
+  var current = timeNow.getFullYear()+"/"+timeNow.getMonth()+"/"+timeNow.getDate()+ " at " + timeNow.getHours()+":"+timeNow.getMinutes();
+
+  /*
   window.onbeforeunload = () => {
     // when browser is closed, remove auth token
     localStorage.removeItem('token');
-  }
+  }*/
 
   useEffect(() => {
     getAllResources();
   }, []);
 
-  const showResources = () => { 
-    getAllResources();
-    document.getElementById("users").style.display="none"; 
-    document.getElementById("resources").style.display="block"; 
-  }
-
-  const showUsers = () => { 
-    getAllUsers();
-    document.getElementById("resources").style.display="none"; 
-    document.getElementById("users").style.display="block"; 
-  }
-  
   const getAllUsers = () => {
-    var token = localStorage.getItem('token');
     axios.get(callToAPI+'users', {
       headers:{
         Accept: 'application/json',
@@ -43,7 +38,8 @@ export default function Authorised() {
         "Access-Control-Allow-Origin": "http://localhost:8080"
     }})
       .then(function (res) {
-        console.log(res.data);
+        setUsers(res.data);
+        //console.log(jwt_decode(localStorage.getItem("token")).sub);
         //
     })
       .catch(function (error) {
@@ -52,7 +48,6 @@ export default function Authorised() {
     })};
 
   const getAllResources = () =>{
-    var token = localStorage.getItem('token');
     axios.get(callToAPI+'resources', {
       headers:{
         Accept: 'application/json',
@@ -72,7 +67,9 @@ export default function Authorised() {
 
   const filledResource = {
     id:0,
-    entry: entry
+    entry: entry,
+    author: jwt_decode(localStorage.getItem("token")).sub,
+    creation: current
   }
 
   const stateEntry = (e) => {
@@ -81,7 +78,6 @@ export default function Authorised() {
   }
 
   const addResource = () => {
-    var token = localStorage.getItem('token');
     // make sure entry is not null
     axios.post(callToAPI+'addResource', filledResource ,{
       headers:{
@@ -102,10 +98,9 @@ export default function Authorised() {
 
   }
 
-  const deleteResource = () => {
-    var token = localStorage.getItem('token');
+  const deleteResource = (resId) => {
     // finish this
-    axios.delete(callToAPI + "resources/"+ id,{
+    axios.delete(callToAPI + "deleteResource/"+ resId,{
       headers:{
         Accept: 'application/json',
        'Content-Type': 'application/json',
@@ -113,13 +108,41 @@ export default function Authorised() {
         "Access-Control-Allow-Origin": "http://localhost:8080"
     }})
       .then(function (res) {
-        console.log(res.data);
+        getAllResources();
         //
     })
       .catch(function (error) {
         // set off A WARNING - authentication token is expired - register again
         console.log(error);
+        setShowAlert(true);
     })
+  }
+
+  const deleteUser = (resId) => {
+    axios.delete(callToAPI + "deleteUser/"+ resId,{
+      headers:{
+        Accept: 'application/json',
+       'Content-Type': 'application/json',
+        Authorization: token ,
+        "Access-Control-Allow-Origin": "http://localhost:8080"
+    }})
+      .then(function (res) {
+        getAllUsers();
+    })
+      .catch(function (err) {
+        console.log(err);
+        setShowAlert(true);
+    })
+  }
+
+  const showUserBoard = () => {
+    getAllUsers();
+    setShowUsers(true);
+  }
+
+  const showResources = () => {
+    getAllResources();
+    setShowUsers(false);
   }
 
 //add button to delete
@@ -128,21 +151,34 @@ export default function Authorised() {
         <AuthApp />
         <div className="main">
           <div className="child" id="toolbar">
-
-          <button className="simpleButton" onClick={()=> showUsers()}>Show all users</button>
+          <button className="simpleButton" onClick={()=> showUserBoard()}>Show all users</button>
           <button className="simpleButton" onClick={()=> showResources()}>Show all resources</button>
           <button className="simpleButton" onClick={()=> addResource()}>Add a resource</button>
           <input className="simpleInput" onChange={stateEntry} required value={entry}></input>
-          
           </div>
 
           <div className="child" id="display">
-            <div className="resourceDisplay" id="resources">
-              {resources.map((res) => <p>{res.entry}</p>)}
+          {showAlert?
+            <Alert className="alert">
+            <Alert.Heading>Non-admins can't make this action!</Alert.Heading>
+            <button className="smallButton" onClick={() => setShowAlert(false)}>x</button>
+            </Alert>
+          : null}
+          {showUsers? 
+           <div className="resourceDisplay" id="users">
+           {users.map((res) => <div className="userEntry">{res.username}
+           <button className="smallButton" onClick={()=> deleteUser(res.id)}>x</button></div>
+           )}
+         </div>
+          :
+          <div className="resourceDisplay" id="resources">
+              {resources.map((res) => 
+              <div className="blogpost"><b>{res.author} on {res.creation} </b> 
+              <button className="smallButton" onClick={()=> deleteResource(res.id)}>x</button>
+              <p>{res.entry} </p>
+              </div>)}
             </div>
-            <div className="resourceDisplay" id="users">
-              {users.map((res) => <p>{res.username}</p>)}
-            </div>
+          }
           </div>
         </div>
       </div>

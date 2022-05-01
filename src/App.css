@@ -1,5 +1,5 @@
 .App{
-  height: 100%;
+  height: 94%;
   width: 100%;
   position: absolute;
 }
@@ -45,6 +45,7 @@
 
 #display.child{
   width: 65%;
+  overflow-y: scroll;
 }
 
 .simpleInput{
@@ -53,6 +54,9 @@
   height: 65%;
   margin-bottom: 5px;
   width: 100%;
+  overflow-x: visible;
+  overflow-y: scroll;
+  overflow-wrap: break-word;
 }
 
 .simpleButton{
@@ -62,4 +66,46 @@
   width: 100%;
   height: 40px;
 }
+.smallButton{
+  width: 30px;
+  height: 30px;
+  background:transparent;
+}
+.smallButton:hover{
+  background:rgb(243, 112, 112);
+}
 
+.alert{
+  background:rgba(243, 112, 112, 0.342);
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  height: 65px;
+}
+
+.resourceDisplay{
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.blogpost{
+  background: rgba(194, 193, 192, 0.384);
+  overflow-x: visible;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.checkbox{
+  height: 20px;
+  width: 20px;
+  margin:0;
+  margin-left: 10px;
+}
+
+.alert#regLog{
+  background: transparent;
+  color: rgb(243, 112, 112);
+  height: 20px;
+}
