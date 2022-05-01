@@ -43,7 +43,6 @@ export default function Register() {
   let loginpage = useNavigate();
 
   const redirectToLoginPage = (e) => {
-    console.log(e);
     loginpage("/login"); // redirects successfully
   }
 
@@ -80,12 +79,7 @@ export default function Register() {
       })
     }
     
-    // on submit, if credentials fit, issue a token and transfer to the access page
-    // function to evaluate credentials, issue token and redirect if evaluated
-    // to redirect:
-    // /authorised
-    // terminate when session is ended, or logout is clicked
-    // make sure hashing is performed here
+    
   }
 
     return (
@@ -103,16 +97,16 @@ export default function Register() {
             <h2>Register</h2>
             <form  onSubmit={sendCredentials}>
               <div className="credentials">
-                <label for="email">
+                <label htmlFor="email">
                   email address
                 </label>
                 <input onChange={stateUsername} required type="email" name="email" value={credentials.username}>
                 </input>
-                <label for="password">
+                <label htmlFor="password">
                   password
                 </label>
-                <input minlength="9" onChange={statePassword} required type="password" name="password" placeholder="*********" value={credentials.password}></input>
-                <label for="checkbox">
+                <input minLength="9" onChange={statePassword} required type="password" name="password" placeholder="*********" value={credentials.password}></input>
+                <label htmlFor="checkbox">
                   <p> Admin?
                   <input className="checkbox" type="checkbox" value={adminCheck} onChange={() => stateCheck()} name="checkbox"></input>
                   </p>

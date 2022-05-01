@@ -45,7 +45,7 @@
 
 #display.child{
   width: 65%;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 .simpleInput{
@@ -108,4 +108,13 @@
   background: transparent;
   color: rgb(243, 112, 112);
   height: 20px;
+}
+
+.greet{
+  position: absolute;
+  left: 2%
+}
+
+.expiration{
+  color: red;
 }

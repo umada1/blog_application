@@ -72,12 +72,12 @@ export default function Login() {
             <h2>Log in to continue</h2>
             <form onSubmit={sendCredentials}>
               <div className="credentials">
-                <label for="email">
+                <label htmlFor="email">
                   email address
                 </label>
                 <input onChange={stateUsername} required type="email" placeholder="example@emailprovider.com" name="email" value={credentials.username}>
                 </input>
-                <label for="password">
+                <label htmlFor="password">
                   password
                 </label>
                 <input onChange={statePassword} required type="password" name="password" placeholder="*********" value={credentials.password}></input>

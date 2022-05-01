@@ -14,6 +14,7 @@ export default function Authorised() {
   const [users, setUsers] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
   const [showUsers,setShowUsers] = useState(false);
+  const [showExpired, setShowExpired] = useState(false);
 
   var token = localStorage.getItem('token');
   var timeNow = new Date();
@@ -26,6 +27,9 @@ export default function Authorised() {
   }*/
 
   useEffect(() => {
+    if(jwt_decode(localStorage.getItem("token")).exp < (Date.now()/ 1000)){
+      setShowExpired(true);
+    }
     getAllResources();
   }, []);
 
@@ -57,11 +61,9 @@ export default function Authorised() {
     }})
       .then(function (res) {
         setResources(res.data);
-        //
     })
       .catch(function (error) {
-        // set off A WARNING - authentication token is expired - register again
-        console.log(error);
+        console.log(error)
     })
   };
 
@@ -158,22 +160,29 @@ export default function Authorised() {
           </div>
 
           <div className="child" id="display">
+
+          {showExpired?
+          <p className="expiration"><b>Your token is expired - register again</b></p>
+          :
+          null
+          }
           {showAlert?
             <Alert className="alert">
-            <Alert.Heading>Non-admins can't make this action!</Alert.Heading>
+            <Alert.Heading>Non-admins can't make this action!
             <button className="smallButton" onClick={() => setShowAlert(false)}>x</button>
+            </Alert.Heading>
             </Alert>
           : null}
           {showUsers? 
            <div className="resourceDisplay" id="users">
-           {users.map((res) => <div className="userEntry">{res.username}
+           {users.map((res) => <div className="userEntry" key={res.id}>{res.username}
            <button className="smallButton" onClick={()=> deleteUser(res.id)}>x</button></div>
            )}
          </div>
           :
           <div className="resourceDisplay" id="resources">
               {resources.map((res) => 
-              <div className="blogpost"><b>{res.author} on {res.creation} </b> 
+              <div key={res.id} className="blogpost"><b>{res.author} on {res.creation} </b> 
               <button className="smallButton" onClick={()=> deleteResource(res.id)}>x</button>
               <p>{res.entry} </p>
               </div>)}
